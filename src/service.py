@@ -1,6 +1,7 @@
 from __future__ import absolute_import, division, print_function, unicode_literals
 
 import json
+import os
 import warnings
 
 import tensorflow as tf
@@ -25,4 +26,4 @@ def root():
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=8080)
+    app.run(host="0.0.0.0", port=os.environ['PORT'])
