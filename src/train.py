@@ -1,5 +1,6 @@
 from __future__ import absolute_import, division, print_function, unicode_literals
 
+import os
 import warnings
 
 import numpy as np
@@ -25,4 +26,6 @@ def create_model():
 if __name__ == "__main__":
     model = create_model()
     print(model.predict([10.0]))
+    model_save_location = "model"
+    os.makedirs(model_save_location, exist_ok=True)
     model.save("model/my_model.h5")
