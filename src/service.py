@@ -13,6 +13,12 @@ deprecation._PRINT_DEPRECATION_WARNINGS = False
 
 app = Flask(__name__)
 
+port = None
+try:
+    port = os.environ['PORT']
+except KeyError:
+    port = "8080"
+
 model = tf.keras.models.load_model("model/my_model.h5")
 
 
@@ -26,4 +32,4 @@ def root():
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=os.environ['PORT'])
+    app.run(host="0.0.0.0", port=port)
