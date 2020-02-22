@@ -5,13 +5,15 @@ import os
 import warnings
 
 import tensorflow as tf
-from flask import Flask, request
+from flask import Flask, request, Response
+from flask_cors import CORS
 from tensorflow.python.util import deprecation
 
 warnings.simplefilter(action='ignore', category=FutureWarning)
 deprecation._PRINT_DEPRECATION_WARNINGS = False
 
 app = Flask(__name__)
+CORS(app)
 
 port = None
 try:
