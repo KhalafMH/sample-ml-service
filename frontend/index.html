@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ML Service</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>ML Service</h1>
+
+    <form id="form" action="http://localhost:8080" method="GET">
+        <div class="form-group row">
+            <label class="col-2" for="input">Input Number</label>
+            <input id="input" name="input" class="form-control col-2" type="number"/>
+        </div>
+        <div class="form-group row">
+            <label for="result" class="col-2">Result</label>
+            <input id="result" class="form-control col-2" type="number" disabled>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+</div>
+
+<script>
+    document.getElementById("form").addEventListener("submit", async function (event) {
+        event.preventDefault();
+        const inputText = document.getElementById("input").value;
+        fetch(`http://localhost:8080?input=${inputText}`).then(async function (response) {
+            let result = await response.json();
+            console.log(result.result);
+            document.getElementById("result").value = result.result;
+        });
+    });
+</script>
+
+</body>
+</html>

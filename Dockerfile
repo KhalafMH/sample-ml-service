@@ -3,7 +3,7 @@ FROM tensorflow/tensorflow:latest-py3
 WORKDIR /app
 ADD requirements.txt .
 RUN python -m pip install --upgrade pip && python -m pip install --upgrade -r requirements.txt
-ADD src /app/
+ADD service /app/
 RUN python train.py
 
 ENV PORT=8080
