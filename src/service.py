@@ -27,8 +27,9 @@ def root():
     input = request.args.get("input")
     if input is None:
         return json.dumps({"error": "No input provided"})
-    prediction = model.predict([float(input)])
-    return json.dumps({"result": str(prediction)})
+    prediction = model.predict([float(input)])[0][0]
+    response = json.dumps({"result": str(prediction)})
+    return Response(response, 200, mimetype="application/json")
 
 
 if __name__ == '__main__':
